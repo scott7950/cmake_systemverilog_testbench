@@ -1,8 +1,10 @@
 #!/usr/bin/python
+#!/usr/bin/python
 
 import os
 import re
 import subprocess
+import glob
 
 class PrjTree:
     def __init__(self):
@@ -13,21 +15,22 @@ class PrjTree:
     def listPrjScript(self):
         self.TOTDir = self.__findTOT()
         self.treeBin = self.TOTDir + '/bin'
+        #print os.listdir(self.treeBin)
+        #dirlist = glob.glob(self.treeBin)
 
         for dirname, dirnames, filenames in os.walk(self.treeBin):
-            # print path to all subdirectories first.
-            for subdirname in dirnames:
-                print(os.path.join(dirname, subdirname))
-
             # print path to all filenames.
             for filename in filenames:
                 print(os.path.join(dirname, filename))
+            break
 
-            # Advanced usage:
-            # editing the 'dirnames' list will stop os.walk() from recursing into there.
-            if '.git' in dirnames:
-                # don't go into any .git directories.
-                dirnames.remove('.git')
+    def runPrjScript(self, prjScriptCmd):
+        prjScript = "1"
+        self.__checkIfprjScriptExist(prjScript)
+        os.system(prjScriptCmd)
+
+    def __checkIfprjScriptExist(self, prjScript):
+        print "1"
 
     def buildTree(self):
         self.TOTDir = self.__findTOT()
