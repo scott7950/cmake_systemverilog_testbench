@@ -2,7 +2,6 @@
 
 `include "cpu_interface.svi"
 `include "packet_interface.svi"
-`include "test.sv"
 
 module top;
 parameter clock_cycle = 10;
